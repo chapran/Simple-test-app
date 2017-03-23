@@ -1,0 +1,14 @@
+<div class="upper-stripe"></div>
+<div class="content-container">
+	<section class="results-section">
+	<h3>Congrats, {{$ctrl.firstname}}! You passed the test with the score:</h3>
+	<span class="score">{{$ctrl.result.score}}</span>
+</section>
+	<section class="bottom-section">
+		<div class="results-view-links">
+			<div><a ng-href="javascript:void(0);" ng-click="$ctrl.back()">Try again</a></div>
+			<div><a ng-href="#">Choose another test</a></div>
+		</div>
+		<p>Ніколи не вказуйте паролі в Google Формах.</p>
+	</section>
+</div>
