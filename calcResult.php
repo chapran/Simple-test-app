@@ -23,6 +23,8 @@
         }
     }
 
-    echo json_encode($totalCorrect);
+    $score = $totalCorrect / $questionsQuantity * 100;
+
+    echo json_encode($score);
 
 ?>

@@ -1,6 +1,6 @@
 {
   "id": 2,
-  "name": "Test #2",
+  "name": "One more",
   "questions": [
     {
       "id": 0,
@@ -15,7 +15,7 @@
       "questionText": "Input type radio question",
       "questionHint": "Pick one of the following",
       "questionType": "radio",
-      "questionOptions": ["Option 1","Option 2","Option 3"],
+      "questionOptions": ["Option 1 (correct)","Option 2","Option 3"],
       "required": false,
       "answer": 0
     },
@@ -24,8 +24,8 @@
       "questionText": "Input type checkbox question",
       "questionHint": "Pick one to three of the following",
       "questionType": "checkbox",
-      "questionOptions": ["Checkbox 1","Checkbox 2","Checkbox 3"],
-      "required": true,
+      "questionOptions": ["Checkbox 1","Checkbox 2 (correct)","Checkbox 3"],
+      "required": false,
       "answer": [1]
     },
     {

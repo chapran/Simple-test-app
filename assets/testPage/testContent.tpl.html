@@ -1,93 +1,95 @@
-<div class="upper-stripe"></div>
-<div class="content-container">
-	<form method="post" name="testForm" ng-submit="$ctrl.submit(testForm.$valid)" novalidate>
-		<section class="heading-section">
-			<h1>{{$ctrl.test.name}}</h1>
-			<span class="required-field-identifier">*Обов'язкове поле</span>
-		</section>
-		<section class="questions-section">
-			<div class="test-item" data-required="true">
-				<h3 class="test-question">Your name</h3>
-				<h5 class="test-hint">Firstname Lastname</h5>
-				<label class="username">
-					<input name='username'
-					       ng-model="$ctrl.answers.username"
-					       type="text" placeholder="Ваша відповідь"
-					       pattern="^[A-Z][a-z]*\s[A-Z][a-z'-]*$"
-					       ng-required="true"
-					       oninput="checkIfValid(this)"
-					       onblur="checkIfValid(this)"/>
-					<span class="animated-border"></span>
-				</label>
-				<div class="test-item-alert" data-message='required'>
-					Відповідь на це запитання обов'язкова
-				</div>
-				<div class="test-item-alert" data-message='pattern'>
-					Firstname Lastname
-				</div>
-			</div>
-			<div class="test-item" ng-repeat="question in $ctrl.test.questions" data-required="{{question.required}}">
-				<h3 class="test-question">{{question.questionText}}</h3>
-				<h5 class="test-hint">{{question.questionHint}}</h5>
-				<div ng-if="question.questionType == 'radio'">
-					<div ng-repeat="item in question.questionOptions">
-						<input type="radio"
-						       name="question-{{question.id}}"
-						       ng-model="$ctrl.answers[question.id]"
-						       ng-value="$index"
-						       id="radio-q-{{question.id}}-{{$index}}"
-						       class="radio-button"
-						       ng-required="{{question.required}}"
-						       onchange="checkIfValid(this)"/>
-						<label for="radio-q-{{question.id}}-{{$index}}" class="radio-button-click-target">
-							<span class="radio-button-circle"></span>{{item}}
-						</label>
-					</div>
-				</div>
-				<div ng-if="question.questionType == 'checkbox'">
-					<div ng-repeat="item in question.questionOptions">
-						<input type="checkbox"
-						       class="checkbox"
-						       name="question-{{question.id}}"
-						       ng-model="$ctrl.answers[question.id][$index]"
-						       id="checkbox-q-{{question.id}}-{{$index}}"
-						       ng-required="{{question.required}}"
-						       onchange="checkIfValid(this)"/>
-						<label for="checkbox-q-{{question.id}}-{{$index}}" class="checkbox-click-target">
-							<span class="checkbox-box"></span>{{item}}
-						</label>
-					</div>
-				</div>
-				<div ng-if="question.questionType == 'text' || question.questionType == 'number'">
-					<label>
-						<input type="{{question.questionType}}"
-						       name="question-{{question.id}}"
-						       ng-model="$ctrl.answers[question.id]"
-						       placeholder="Your answer"
-						       ng-required="{{question.required}}"
+<div ng-show="!!$ctrl.test">
+	<div class="upper-stripe"></div>
+	<div class="content-container">
+		<form method="post" name="testForm" ng-submit="$ctrl.submit(testForm.$valid)" novalidate>
+			<section class="heading-section">
+				<h1>{{$ctrl.test.name}}</h1>
+				<span class="required-field-identifier">*Обов'язкове поле</span>
+			</section>
+			<section class="questions-section">
+				<div class="test-item" data-required="true">
+					<h3 class="test-question">Your name</h3>
+					<h5 class="test-hint">Firstname Lastname</h5>
+					<label class="username">
+						<input name='username'
+						       ng-model="$ctrl.answers.username"
+						       type="text" placeholder="Ваша відповідь"
+						       pattern="^[A-Z][a-z]*\s[A-Z][a-z'-]*$"
+						       ng-required="true"
 						       oninput="checkIfValid(this)"
-						       onblur="checkIfValid(this)"
-						       autocomplete="off"/>
+						       onblur="checkIfValid(this)"/>
 						<span class="animated-border"></span>
 					</label>
+					<div class="test-item-alert" data-message='required'>
+						Відповідь на це запитання обов'язкова
+					</div>
+					<div class="test-item-alert" data-message='pattern'>
+						Firstname Lastname
+					</div>
 				</div>
-				<div ng-if="question.required == true" class="test-item-alert" data-message='required'>
-					Відповідь на це запитання обов'язкова
-				</div>
-				<!--<div class="test-item-alert" ng-show="testForm[$index].$error.required && testForm[$index].$touched">-->
+				<div class="test-item" ng-repeat="question in $ctrl.test.questions" data-required="{{question.required}}">
+					<h3 class="test-question">{{question.questionText}}</h3>
+					<h5 class="test-hint">{{question.questionHint}}</h5>
+					<div ng-if="question.questionType == 'radio'">
+						<div ng-repeat="item in question.questionOptions">
+							<input type="radio"
+							       name="question-{{question.id}}"
+							       ng-model="$ctrl.answers[question.id]"
+							       ng-value="$index"
+							       id="radio-q-{{question.id}}-{{$index}}"
+							       class="radio-button"
+							       ng-required="{{question.required}}"
+							       onchange="checkIfValid(this)"/>
+							<label for="radio-q-{{question.id}}-{{$index}}" class="radio-button-click-target">
+								<span class="radio-button-circle"></span>{{item}}
+							</label>
+						</div>
+					</div>
+					<div ng-if="question.questionType == 'checkbox'">
+						<div ng-repeat="item in question.questionOptions" ng-init="$ctrl.answers[question.id] = {}">
+							<input type="checkbox"
+							       class="checkbox"
+							       name="question-{{question.id}}"
+							       ng-click="$ctrl.toggleCheckbox(this, question.id, question.required)"
+							       id="checkbox-q-{{question.id}}-{{$index}}"
+							       ng-required="{{question.required}}"
+							       onchange="checkIfValid(this)"/>
+							<label for="checkbox-q-{{question.id}}-{{$index}}" class="checkbox-click-target">
+								<span class="checkbox-box"></span>{{item}}
+							</label>
+						</div>
+					</div>
+					<div ng-if="question.questionType == 'text' || question.questionType == 'number'">
+						<label>
+							<input type="{{question.questionType}}"
+							       name="question-{{question.id}}"
+							       ng-model="$ctrl.answers[question.id]"
+							       placeholder="Your answer"
+							       ng-required="{{question.required}}"
+							       oninput="checkIfValid(this)"
+							       onblur="checkIfValid(this)"
+							       autocomplete="off"/>
+							<span class="animated-border"></span>
+						</label>
+					</div>
+					<div ng-if="question.required == true" class="test-item-alert" data-message='required'>
+						Відповідь на це запитання обов'язкова
+					</div>
+					<!--<div class="test-item-alert" ng-show="testForm[$index].$error.required && testForm[$index].$touched">-->
 					<!--Відповідь на це запитання обов'язкова-->
-				<!--</div>-->
-			</div>
-		</section>
-		<section class="bottom-section">
-			<div class="progress-container">
-				<div class="progress-wrap">
-					<div class="progress-bar"></div>
+					<!--</div>-->
 				</div>
-				<span>Сторінка 1 з 1</span>
-			</div>
-			<input type="submit" class="btn btn-primary" value="Надіслати">
-			<p>Ніколи не вказуйте паролі в Google Формах.</p>
-		</section>
-	</form>
+			</section>
+			<section class="bottom-section">
+				<div class="progress-container">
+					<div class="progress-wrap">
+						<div class="progress-bar"></div>
+					</div>
+					<span>Сторінка 1 з 1</span>
+				</div>
+				<input type="submit" class="btn btn-primary" value="Надіслати">
+				<p>Ніколи не вказуйте паролі в Google Формах.</p>
+			</section>
+		</form>
+	</div>
 </div>

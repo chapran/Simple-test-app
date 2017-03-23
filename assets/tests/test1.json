@@ -1,37 +1,37 @@
 {
   "id": 1,
-  "name": "Test #1",
+  "name": "Another test",
   "questions": [
     {
       "id": 0,
-      "questionText": "Total experience with HTML",
+      "questionText": "Total experience with CSS",
       "questionHint": "Enter number in months, f. e. 5",
-      "questionType": "text",
+      "questionType": "number",
       "required": false,
-      "answer": "hi"
+      "answer": 5
     },
     {
       "id": 1,
       "questionText": "Input type radio question",
       "questionHint": "Pick one of the following",
       "questionType": "radio",
-      "questionOptions": ["Option 1","Option 2","Option 3"],
+      "questionOptions": ["Option 1","Option 2","Option 3 (correct)"],
       "required": false,
-      "answer": 0
+      "answer": 2
     },
     {
       "id": 2,
       "questionText": "Input type checkbox question",
       "questionHint": "Pick one to three of the following",
       "questionType": "checkbox",
-      "questionOptions": ["Checkbox 1","Checkbox 2","Checkbox 3"],
-      "required": true,
-      "answer": [1]
+      "questionOptions": ["Checkbox 1","Checkbox 2 (correct)","Checkbox 3 (correct)"],
+      "required": false,
+      "answer": [1, 2]
     },
     {
       "id": 3,
-      "questionText": "Some other question",
-      "questionHint": "just type text",
+      "questionText": "Other question",
+      "questionHint": "Type text",
       "questionType": "text",
       "required": false,
       "answer": "test!"

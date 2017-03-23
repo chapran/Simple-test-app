@@ -46,8 +46,12 @@
                         return;
 					}
 					testItem.removeClass('invalid-required');
+				} else if(input.attr('type') == 'radio'){
+					if(!input.hasClass('ng-dirty')){
+						testItem.addClass('invalid-required');
+					} else testItem.removeClass('invalid-required');
 				} else {
-                    if(input.val() == ''){
+                    if(!input.val()){
                         if(testItem.hasClass('invalid-pattern')){
                             testItem.removeClass('invalid-pattern');
                         }

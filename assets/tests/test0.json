@@ -1,6 +1,6 @@
 {
   "id": 0,
-  "name": "Test #0",
+  "name": "Some test",
   "questions": [
     {
       "id": 0,
@@ -15,8 +15,8 @@
       "questionText": "Input type radio question",
       "questionHint": "Pick one of the following",
       "questionType": "radio",
-      "questionOptions": ["Option 1","Option 2","Option 3"],
-      "required": false,
+      "questionOptions": ["Option 1","Option 2","Option 3 (correct)"],
+      "required": true,
       "answer": 2
     },
     {
@@ -24,8 +24,8 @@
       "questionText": "Input type checkbox question",
       "questionHint": "Pick one to three of the following",
       "questionType": "checkbox",
-      "questionOptions": ["Checkbox 1","Checkbox 2","Checkbox 3"],
-      "required": false,
+      "questionOptions": ["Checkbox 1 (correct)","Checkbox 2","Checkbox 3 (correct)"],
+      "required": true,
       "answer": [0, 2]
     },
     {
