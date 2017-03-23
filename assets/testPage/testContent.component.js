@@ -6,7 +6,13 @@ angular
         templateUrl: 'assets/testPage/testContent.tpl.html',
         controller: ["$http", '$routeParams', 'Test', '$location', 'getResultService', function testContentController($http, $routeParams, Test, $location, getResultService) {
             var self = this;
-            self.test = Test.get({testId: $routeParams.testId});
+            $http({
+                url: 'getTest.php',
+                method: "GET",
+                params: {Id: $routeParams.testId}
+            }).then(function (response) {
+                self.test = response.data;
+            });
             self.answers = {};
             self.submit = function (valid) {
                 self.answers.testId = self.test.id;

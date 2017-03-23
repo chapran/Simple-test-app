@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="quizApp" ng-cloak>
+<html lang="en" ng-app="quizApp">
 <head>
 	<meta charset="UTF-8">
 	<title>Simple quiz</title>
@@ -25,7 +25,6 @@
 	<script src="assets/resultPage/resultPage.component.js"></script>
 	<script src="assets/getResultService/getResultService.module.js"></script>
 	<script src="assets/getResultService/getResultService.service.js"></script>
-	<script src="assets/testPage/getTest.service.js"></script>
 
 	<!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -35,7 +34,7 @@
 </head>
 <body>
 	<div class="banner"></div>
-	<div ng-view class="quiz-container"></div>
+	<div ng-view class="quiz-container" ng-cloak></div>
 	<script>
         function checkIfValid(elem) {
             var input = $(elem);
