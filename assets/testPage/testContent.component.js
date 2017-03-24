@@ -4,7 +4,8 @@ angular
     .module('testPage')
     .component('testContent', {
         templateUrl: 'assets/testPage/testContent.tpl.html',
-        controller: ["$http", '$routeParams', '$location', 'getResultService', "$interval", function testContentController($http, $routeParams, $location, getResultService, $interval) {
+        controller: ["$http", '$routeParams', '$location', 'getResultService', "$interval", '$scope',
+            function testContentController($http, $routeParams, $location, getResultService, $interval, $scope) {
             var self = this;
             $http({
                 url: 'getTest.php',
@@ -58,11 +59,16 @@ angular
                     + minutes + ":" + seconds;
 
                 if (distance < 0) {
+                    alert('Sorry, your time has expired!');
                     $interval.cancel(self.timer);
                     self.timer = undefined;
-                    alert('Sorry, your time has expired!');
                     $location.path('/');
                 }
             }, 1000);
+
+            $scope.$on('$destroy',function(){
+                if(self.timer)
+                    $interval.cancel(self.timer);
+            });
         }]
     });
