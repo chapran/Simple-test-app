@@ -26,6 +26,12 @@ body {
   height: 8px;
   background-color: #b3f8d6; }
 
+.timer {
+  position: fixed;
+  right: 50px;
+  top: 50px;
+  font-weight: bold; }
+
 .content-container {
   background-color: #fff;
   padding: 34px 17px; }

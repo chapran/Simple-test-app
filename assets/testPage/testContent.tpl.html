@@ -1,4 +1,7 @@
 <div ng-show="!!$ctrl.test">
+	<div class="timer">Time left:
+		<br>
+		{{$ctrl.timeLeft}}</div>
 	<div class="upper-stripe"></div>
 	<div class="content-container">
 		<form method="post" name="testForm" ng-submit="$ctrl.submit(testForm.$valid)" novalidate>

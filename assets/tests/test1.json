@@ -1,6 +1,7 @@
 {
   "id": 1,
   "name": "Another test",
+  "timeToComplete": 10,
   "questions": [
     {
       "id": 0,
